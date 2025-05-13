@@ -17,7 +17,7 @@ import Cart from './pages/Cart'
 function App() {
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <Navbar/>
       <Searchbar/>
       <Routes>
