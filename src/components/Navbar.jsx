@@ -21,6 +21,11 @@ const Navbar = () => {
     setCartItems({});
   };
 
+  const searchHandler = () => {
+    navigate('/collection')
+    setShowSearch(true);
+  }
+
   return (
     <div className="flex items-center justify-between py-5 font-medium">
       <Link to="/">
@@ -47,7 +52,7 @@ const Navbar = () => {
       </ul>
       <div className="flex items-center gap-6">
         <img
-          onClick={() => setShowSearch(true)}
+          onClick={searchHandler}
           className="w-5 cursor-pointer"
           src={assets.search_icon}
           alt=""
