@@ -10,7 +10,7 @@ import PlaceOrder from './pages/PlaceOrder'
 import Order from './pages/Order'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Searchbar from './components/Searchbar'
+import SearchBar from './components/SearchBar';
 import { Toaster } from 'react-hot-toast';
 import Cart from './pages/Cart'
 import Verify from './pages/Verify'
@@ -20,7 +20,7 @@ function App() {
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
       <Toaster position="top-center" reverseOrder={false} />
       <Navbar/>
-      <Searchbar/>
+      <SearchBar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/collection' element={<Collection/>}/>
