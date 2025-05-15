@@ -27,9 +27,9 @@ const Navbar = () => {
   }
 
   return (
-    <div className="flex items-center justify-between py-5 font-medium">
+    <div className="flex items-center justify-between py-5 font-medium pr-4 sm:pr-0">
       <Link to="/">
-        <img src={assets.logo} className="w-36" alt="" />
+        <img src={assets.logo} className="w-2/3" alt="" />
       </Link>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
@@ -50,7 +50,7 @@ const Navbar = () => {
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
       </ul>
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-2 sm:gap-6">
         <img
           onClick={searchHandler}
           className="w-5 cursor-pointer"
