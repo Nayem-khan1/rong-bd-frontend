@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
+import InnerImageZoom from 'react-inner-image-zoom'
+import "inner-image-zoom/lib/styles.min.css";
 
 const Product = () => {
   const { productId } = useParams();
@@ -42,7 +44,7 @@ const Product = () => {
             ))}
           </div>
           <div className="w-full sm:w-[80%]">
-            <img className="w-full h-auto" src={image} alt="" />
+            <InnerImageZoom src={image} />
           </div>
         </div>
         {/* Product information */}
