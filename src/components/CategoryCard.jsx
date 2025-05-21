@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 const CategoryCard = ({ title, img }) => {
   return (
-    <Link to="/collection">
+    <Link to={`/collection?category=${title}`}>
       <div className="relative group overflow-hidden shadow hover:shadow-lg transition">
         {/* Image */}
         <img

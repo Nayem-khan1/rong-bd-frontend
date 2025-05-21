@@ -7,9 +7,9 @@ const Category = () => {
     <div>
       {/* Category Cards */}
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <CategoryCard title="Men's" img={assets.menCategory} />
-        <CategoryCard title="Women's" img={assets.womenCategory} />
-        <CategoryCard title="Kid's" img={assets.kidsCategory} />
+        <CategoryCard title="Men" img={assets.menCategory} />
+        <CategoryCard title="Women" img={assets.womenCategory} />
+        <CategoryCard title="Kids" img={assets.kidsCategory} />
       </div>
     </div>
   );

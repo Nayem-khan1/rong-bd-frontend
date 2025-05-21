@@ -3,6 +3,7 @@ import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
+import { useSearchParams } from "react-router";
 
 const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
@@ -11,6 +12,9 @@ const Collection = () => {
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [sortType, setSortType] = useState('relevant')
+
+  let [searchParams] = useSearchParams();
+  console.log(searchParams.get('category'));
 
   const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {
@@ -70,7 +74,7 @@ const Collection = () => {
 
   useEffect(() => {
     applyFilter();
-  }, [category, subCategory, search, showSearch, products]);
+  }, [category, subCategory, search, showSearch, products, searchParams]);
 
   useEffect(() => {
     sortProduct();

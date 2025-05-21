@@ -8,11 +8,12 @@ const Footer = () => {
         <div>
           <img src={assets.logo} className="mb-5 w-32" alt="" />
           <p className="w-full md:w-2/3 text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-            nostrum praesentium dolorum consequatur eveniet, inventore ipsa
-            similique esse quibusdam quaerat. Cumque laudantium excepturi
-            impedit id tempore facilis neque earum modi illum, rem fugit?
-            Repellendus earum suscipit accusamus non sunt dolorem.
+            At LIVEYET, we believe fashion should be effortless, affordable, and
+            expressive. From modern essentials to timeless classics, we offer
+            high-quality clothing for Men, Women, and Kids. Every piece is
+            thoughtfully designed to bring comfort, confidence, and style into
+            your everyday life. Proudly based in Bangladesh, we’re on a mission
+            to make great fashion accessible to all.
           </p>
         </div>
         <div>
@@ -33,8 +34,10 @@ const Footer = () => {
         </div>
       </div>
       <div>
-        <hr className="text-gray-300"/>
-        <p className="py-5 text-sm text-center">Copyright 2025@ liveyet.com -All Right Reserved.</p>
+        <hr className="text-gray-300" />
+        <p className="py-5 text-sm text-center">
+          Copyright 2025@ liveyet.com -All Right Reserved.
+        </p>
       </div>
     </div>
   );
