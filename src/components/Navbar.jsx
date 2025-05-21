@@ -99,7 +99,7 @@ const Navbar = () => {
       {/* Sidebar Menu for small screens */}
       <div
         className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
-          visible ? "w-full z-10" : "w-0"
+          visible ? "w-full z-20" : "w-0"
         }`}
       >
         <div className="flex flex-col text-gray-600">

@@ -60,6 +60,27 @@ import hero_img from './hero_img.jpg'
 import banner1 from './banner1.jpg'
 import banner2 from "./banner2.png"
 import banner3 from "./banner3.png"
+import menCategory from "./mens-category.jpg"
+import womenCategory from "./womens-category.jpg"
+import kidsCategory from './kids-category.jpg'
+import men1 from "./men1.jpg"
+import men2 from "./men2.jpg"
+import men3 from "./men3.jpg"
+import men4 from "./men4.jpg"
+import men5 from "./men5.jpg"
+import men6 from "./men6.jpg"
+import women1 from './women1.jpg'
+import women2 from './women2.jpg'
+import women3 from './women3.jpg'
+import women4 from './women4.jpg'
+import women5 from './women5.jpg'
+import women6 from './women6.jpg'
+import kids1 from './kids1.jpg'
+import kids2 from './kids2.jpg'
+import kids3 from './kids3.jpg'
+import kids4 from './kids4.jpg'
+import kids5 from './kids5.jpg'
+import kids6 from './kids6.jpg'
 import cart_icon from './cart_icon.png'
 import bin_icon from './bin_icon.png'
 import dropdown_icon from './dropdown_icon.png'
@@ -83,6 +104,27 @@ export const assets = {
     banner1,
     banner2,
     banner3,
+    menCategory,
+    womenCategory,
+    kidsCategory,
+    men1,
+    men2,
+    men3,
+    men4,
+    men5,
+    men6,
+    women1,
+    women2,
+    women3,
+    women4,
+    women5,
+    women6,
+    kids1,
+    kids2,
+    kids3,
+    kids4,
+    kids5,
+    kids6,
     cart_icon,
     dropdown_icon,
     exchange_icon,
