@@ -23,7 +23,7 @@ const Verify = () => {
             
             if(response.data.success) {
                 setCartItems({})
-                navigate('/order')
+                navigate('/orders')
             } else {
                 navigate('/cart')
             }

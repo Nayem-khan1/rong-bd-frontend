@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link, NavLink } from "react-router";
 import { ShopContext } from "../context/ShopContext";
+import { ArrowBigRight, ArrowRight } from "lucide-react";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
@@ -98,13 +99,14 @@ const Navbar = () => {
                   Orders
                 </li>
                 <li
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center"
                   onClick={() => {
                     logOut();
                     setOpen(false);
                   }}
                 >
-                  Logout
+                  <span>Logout</span>
+                  <ArrowRight className="w-3 ml-2"/>
                 </li>
               </ul>
             </div>
