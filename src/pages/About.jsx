@@ -9,7 +9,7 @@ function About() {
       <div className='text-2xl text-center pt-8 border-t border-gray-300'>
         <Title text1={'ABOUT'} text2={'US'}/>
       </div>
-      <div className='my-10 flex flex-clo mf:flex-row gap-16'>
+      <div className='my-10 flex flex-col md:flex-row gap-16'>
         <img className='w-full md:max-w-[450px]' src={assets.about_img} alt=''/>
         <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, deleniti quis delectus possimus et omnis unde provident molesti Expedita sequi perferendis quas amet nostrum a consequatur quia , inventore illum quae rerum magni fuga enim tempora! Veniam vitae incidunt illum id iusto aspernatur debitis hic fuga? Sit, optio nesciunt!</p>

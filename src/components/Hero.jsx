@@ -1,75 +1,64 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { assets } from "../assets/assets";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import { assets } from "../assets/assets"; // Update image imports
 import { Link } from "react-router";
 
 const slides = [
-  {
-    img: assets.hero_img,
-    heading: "Men’s Urban",
-  },
-  {
-    img: assets.banner1,
-    heading: "Elegant Women",
-  },
-  {
-    img: assets.banner2,
-    heading: "Playful Kids",
-  },
+  { img: assets.hero_img, alt: "Men’s Urban" },
+  { img: assets.banner1, alt: "Elegant Women" },
+  { img: assets.banner2, alt: "Playful Kids" },
 ];
 
 const Hero = () => {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % slides.length);
-    }, 5000); // every 5 seconds
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="flex flex-col sm:flex-row items-center h-[80vh] bg-gray-50 overflow-hidden">
-      {/* Text Section */}
-      <div className="w-full sm:w-1/2 flex items-center justify-center px-6 sm:px-12">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={slides[index].heading}
-            initial={{ y: -40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 40, opacity: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-[#414141] space-y-4"
-          >
-            <div className="flex items-center gap-2">
-              <p className="w-8 md:w-11 h-[2px] bg-[#414141]"></p>
-              <p className="font-medium text-sm md:text-base">OUR PICKS</p>
-            </div>
-            <h1 className="text-3xl lg:text-5xl prata-regular">
-              {slides[index].heading}
-            </h1>
-            <Link to="/collection" className="inline-flex items-center gap-2">
-              <span className="font-semibold text-sm md:text-base">SHOP NOW</span>
-              <span className="w-8 md:w-11 h-[1px] bg-[#414141]"></span>
+    <div className="bg-[#fce0e2]">
+      {/* Hero Section */}
+      <div className="flex flex-col-reverse lg:flex-row items-center gap-6 lg:gap-10">
+        {/* Left Side Text */}
+        <div className="lg:w-1/2 text-[#414141] space-y-4 px-4 sm:px-10 pb-4 sm:pb-0">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-[2px] bg-[#414141] mr-1" />
+            <p className="text-sm md:text-base font-medium">OUR PICKS</p>
+          </div>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl prata-regular leading-snug">
+            DISCOVER STYLE FOR <br /> MEN, WOMEN & KIDS
+          </h1>
+          <p className="text-base font-medium text-gray-600 max-w-md">
+            Shop trendy, comfortable, and elegant pieces from our exclusive 2025
+            collections. Made for every mood and every moment.
+          </p>
+          <div className="flex items-center">
+            <Link
+              to="/collection"
+              className=" inline-block mt-4 sm:mt-8 border border-black px-8 py-4 text-sm font-medium hover:bg-black hover:text-white transition-all duration-500 cursor-pointer"
+            >
+              SHOP NOW
             </Link>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+            <div className="w-12 h-[2px] bg-[#414141] mt-4 sm:mt-8 ml-3" />
+          </div>
+        </div>
 
-      {/* Image Section */}
-      <div className="w-full sm:w-1/2 h-full flex items-center justify-center">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={slides[index].img}
-            src={slides[index].img}
-            alt={`Slide ${index + 1}`}
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -40, opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="w-full h-full object-cover"
-          />
-        </AnimatePresence>
+        {/* Right Side Image Slider */}
+        <div className="lg:w-1/2 w-full">
+          <Swiper
+            modules={[Autoplay]}
+            autoplay={{ delay: 5000 }}
+            loop={true}
+            className="w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden"
+          >
+            {slides.map((slide, i) => (
+              <SwiperSlide key={i}>
+                <img
+                  src={slide.img}
+                  alt={slide.alt}
+                  className="w-full h-full object-cover"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );
