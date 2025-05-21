@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link, NavLink } from "react-router";
 import { ShopContext } from "../context/ShopContext";
@@ -13,6 +13,8 @@ const Navbar = () => {
     setToken,
     setCartItems,
   } = useContext(ShopContext);
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef();
 
   const logOut = () => {
     navigate("/login");
@@ -25,11 +27,28 @@ const Navbar = () => {
     navigate("/collection");
     setShowSearch(true);
   };
+  const handleClickOutside = (e) => {
+    if (menuRef.current && !menuRef.current.contains(e.target)) {
+      setOpen(false);
+    }
+  };
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleProfileClick = () => {
+    if (!token) {
+      navigate("/login");
+    } else {
+      setOpen(!open);
+    }
+  };
   return (
-    <div className="flex items-center justify-between py-5 font-medium pr-4 sm:pr-0">
+    <div className="flex items-center justify-between py-5 font-medium">
       <Link to="/">
-        <img src={assets.logo} className="w-1/2" alt="" />
+        <img src={assets.logo} className="w-36" alt="logo" />
       </Link>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
@@ -50,7 +69,7 @@ const Navbar = () => {
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
       </ul>
-      <div className="flex items-center gap-2 sm:gap-6">
+      <div className="flex items-center gap-6">
         <img
           onClick={searchHandler}
           className="w-5 cursor-pointer"
@@ -58,28 +77,36 @@ const Navbar = () => {
           alt=""
         />
 
-        <div className="group relative">
+        <div className="relative" ref={menuRef}>
           <img
-            onClick={() => (token ? null : navigate("/login"))}
-            className="w-5 cursor-pointer"
+            onClick={handleProfileClick}
+            className="w-5 cursor-pointer transition-transform duration-200 hover:scale-105"
             src={assets.profile_icon}
-            alt=""
+            alt="Profile"
           />
-          {/* Dropdown Menu */}
-          {token && (
-            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
-              <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
-                <p className="cursor-pointer hover:text-black">My Profile</p>
-                <p
-                  onClick={() => navigate("/orders")}
-                  className="cursor-pointer hover:text-black"
+
+          {token && open && (
+            <div className="absolute right-0 mt-2 z-30 w-40 bg-white border border-gray-200 rounded shadow-lg animate-fadeIn">
+              <ul className="flex flex-col text-sm text-gray-700">
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    navigate("/orders");
+                    setOpen(false);
+                  }}
                 >
                   Orders
-                </p>
-                <p onClick={logOut} className="cursor-pointer hover:text-black">
+                </li>
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    logOut();
+                    setOpen(false);
+                  }}
+                >
                   Logout
-                </p>
-              </div>
+                </li>
+              </ul>
             </div>
           )}
         </div>
