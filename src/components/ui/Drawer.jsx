@@ -112,7 +112,7 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
                               item.quantity - 1
                             )
                           }
-                          className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:text-gray-300"
+                          className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:text-gray-300 cursor-pointer"
                           disabled={item.quantity <= 1}
                         >
                           -
@@ -128,7 +128,7 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
                               item.quantity + 1
                             )
                           }
-                          className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                          className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 cursor-pointer"
                         >
                           +
                         </button>

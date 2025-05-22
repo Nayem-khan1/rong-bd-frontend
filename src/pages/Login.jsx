@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation } from "react-router";
 
 const Login = () => {
   const [currentState, setCurrentState] = useState("Login");
@@ -13,7 +13,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const location = useLocation();
-  const navigatePrevPage = useNavigate();
   const from = location.state?.from || "/";
 
   const onSubmitHandler = async (event) => {

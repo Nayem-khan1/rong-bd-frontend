@@ -193,7 +193,7 @@ const Collection = () => {
           onClick={resetFilters}
           className={`border border-gray-300 text-red-600 py-2 px-4 mt-6 ${
             showFilter ? "mb-4" : "hidden"
-          } sm:block`}
+          } sm:block cursor-pointer`}
         >
           CLEAR ALL
         </button>
