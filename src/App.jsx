@@ -14,6 +14,7 @@ import SearchBar from './components/SearchBar';
 import { Toaster } from 'react-hot-toast';
 import Cart from './pages/Cart'
 import Verify from './pages/Verify'
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path='/orders' element={<Order/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/verify' element={<Verify/>}/>
+        <Route path='/profile' element={<Profile/>}/>
       </Routes>
       <Footer/>
     </div>

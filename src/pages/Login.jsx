@@ -21,8 +21,10 @@ const Login = () => {
           password,
         });
         if (response.data.success) {
-          setToken(response.data.token);
-          localStorage.setItem("token", response.data.token);
+          setToken(response.data.data.token);
+          localStorage.setItem("token", response.data.data.token);
+          localStorage.setItem("userInfo", JSON.stringify(response.data.data))
+          toast.success("Registration Successful")
         } else {
           toast.error(response.data.message);
         }
@@ -32,8 +34,10 @@ const Login = () => {
           password,
         });
         if (response.data.success) {
-          setToken(response.data.token);
-          localStorage.setItem("token", response.data.token);
+          setToken(response.data.data.token);
+          localStorage.setItem("token", response.data.data.token);
+          localStorage.setItem("userInfo", JSON.stringify(response.data.data))
+          toast.success("Login Successful")
         } else {
           toast.error(response.data.message);
         }

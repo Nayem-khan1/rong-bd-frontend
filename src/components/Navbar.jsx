@@ -20,6 +20,7 @@ const Navbar = () => {
   const logOut = () => {
     navigate("/login");
     localStorage.removeItem("token");
+    localStorage.removeItem("userInfo");
     setToken("");
     setCartItems({});
   };
@@ -89,6 +90,15 @@ const Navbar = () => {
           {token && open && (
             <div className="absolute right-0 mt-2 z-30 w-40 bg-white border border-gray-200 rounded shadow-lg animate-fadeIn">
               <ul className="flex flex-col text-sm text-gray-700">
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    navigate("/profile");
+                    setOpen(false);
+                  }}
+                >
+                  Profile
+                </li>
                 <li
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => {
