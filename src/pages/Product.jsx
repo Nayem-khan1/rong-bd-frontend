@@ -3,8 +3,9 @@ import { useParams } from "react-router";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
-import InnerImageZoom from 'react-inner-image-zoom'
+import InnerImageZoom from "react-inner-image-zoom";
 import "inner-image-zoom/lib/styles.min.css";
+import Drawer from "../components/ui/Drawer";
 
 const Product = () => {
   const { productId } = useParams();
@@ -12,6 +13,7 @@ const Product = () => {
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const fetchProductData = async () => {
     products.map((item) => {
@@ -26,6 +28,13 @@ const Product = () => {
   useEffect(() => {
     fetchProductData();
   }, [productId, products]);
+
+  const handleAddToCart = (id, size) => {
+    addToCart(id, size);
+    if (size) {
+      setIsDrawerOpen(true);
+    }
+  };
 
   return productData ? (
     <div className="border-t-2 border-gray-300 pt-10 transition-opacity ease-in duration-500 opacity-100">
@@ -81,7 +90,10 @@ const Product = () => {
               ))}
             </div>
           </div>
-          <button onClick={() => addToCart(productData._id, size)} className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 cursor-pointer">
+          <button
+            onClick={() => handleAddToCart(productData._id, size)}
+            className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 cursor-pointer"
+          >
             ADD TO CART
           </button>
           <hr className="text-gray-300 mt-8 sm:w-4/5" />
@@ -96,35 +108,52 @@ const Product = () => {
       {/* Description and Review section */}
       <div className="mt-20">
         <div className="flex">
-          <b className="border border-gray-300 px-5 py-3 text-sm">Description</b>
-          <p className="border border-gray-300 px-5 py-3 text-sm">Reviews (122)</p>
+          <b className="border border-gray-300 px-5 py-3 text-sm">
+            Description
+          </b>
+          <p className="border border-gray-300 px-5 py-3 text-sm">
+            Reviews (122)
+          </p>
         </div>
         <div className="flex flex-col gap-4 border border-gray-300 px-6 py-6 text-sm text-gray-500">
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate
-            exercitationem necessitatibus animi eligendi eveniet deserunt, unde
-            earum omnis assumenda, cum numquam error quae excepturi minima,
-            eaque pariatur aut? Aspernatur, voluptatibus. Amet fugiat corrupti,
-            esse veritatis ducimus excepturi tenetur minima, quasi blanditiis
-            magni voluptatum repellat doloribus recusandae nihil odit explicabo
-            quod quam! Voluptates doloremque deleniti commodi nemo minima
-            numquam recusandae? Obcaecati harum tempora consequuntur aspernatur
-            esse expedita aperiam ipsa et repellendus ad repellat iusto vero
-            dolorum sed ex, delectus incidunt quos temporibus inventore
-            exercitationem quaerat deleniti natus quo. Fugit omnis consequatur,
-            dolore veritatis aliqui
+            Elevate your everyday wardrobe with our Classic Cotton Linen Blend
+            Shirt — a timeless piece designed for both comfort and style.
+            Crafted from a breathable cotton-linen blend, this shirt offers a
+            lightweight and airy feel that’s perfect for warmer days or layered
+            looks. Featuring a tailored yet relaxed fit, it pairs effortlessly
+            with jeans, chinos, or even shorts for a smart-casual vibe. The
+            button-down front, adjustable cuffs, and subtle stitching details
+            reflect quality craftsmanship that lasts. Whether you're heading to
+            brunch, the office, or a weekend getaway, this versatile piece will
+            keep you looking sharp without sacrificing comfort.
           </p>
-          <p> Iure eos exercitationem hic voluptatum
-            suscipit dolores non neque sit minima nostrum quibusdam, placeat
-            ducimus amet ex inventore illum consectetur ullam nam porro quaerat
-            explicabo? Voluptas saepe, repudiandae iste eius quia est voluptate
-            aperiam officiis neque tempore laboriosam nulla dolor porro
-            recusandae explicabo, aliquid illo pariatur iure necessitatibus
-            quidem provident molestias debitis.</p>
+          <p>
+            Experience effortless style and all-day comfort with our Cotton
+            Linen Casual Shirt, crafted for those who appreciate laid-back
+            elegance. Made from a breathable blend of cotton and linen, this
+            shirt keeps you cool and comfortable whether you're at the office,
+            out for brunch, or enjoying a weekend getaway. The lightweight
+            fabric feels soft against the skin, while the classic button-down
+            design and subtle texture give it a timeless appeal that works in
+            every season.
+          </p>
+          <p>
+            Designed with versatility in mind, this shirt features a relaxed yet
+            structured fit that pairs effortlessly with jeans, chinos, or
+            shorts. A chest pocket, button cuffs, and curved hemline add
+            thoughtful details, making it easy to dress up or down. Whether
+            you're layering it over a tee or wearing it solo, this shirt will
+            quickly become a go-to staple in your wardrobe.
+          </p>
         </div>
       </div>
       {/* disply related products */}
-      <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
+      <RelatedProducts
+        category={productData.category}
+        subCategory={productData.subCategory}
+      />
+      <Drawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
     </div>
   ) : (
     <div className="opacity-0"></div>
