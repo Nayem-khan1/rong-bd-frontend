@@ -30,7 +30,7 @@ const Login = () => {
           localStorage.setItem("token", response.data.data.token);
           localStorage.setItem("userInfo", JSON.stringify(response.data.data));
           toast.success("Registration Successful");
-          navigatePrevPage(from, { replace: true });
+          // navigatePrevPage(from, { replace: true });
         } else {
           toast.error(response.data.message);
         }
@@ -44,7 +44,7 @@ const Login = () => {
           localStorage.setItem("token", response.data.data.token);
           localStorage.setItem("userInfo", JSON.stringify(response.data.data));
           toast.success("Login Successful");
-          navigatePrevPage(from, { replace: true });
+          // navigatePrevPage(from, { replace: true });
         } else {
           toast.error(response.data.message);
         }
@@ -54,6 +54,12 @@ const Login = () => {
       toast.error(error.message);
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
 
   return (
     <form
