@@ -2,7 +2,9 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../context/ShopContext";
+import Title from "../Title";
 import { assets } from "../../assets/assets";
+import { Link } from "react-router";
 
 const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
   const {
@@ -35,14 +37,20 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
   }, [cartItems, products]);
 
   useEffect(() => {
-  if (cartData.length === 0) {
-    setIsDrawerOpen(false);
-  }
-}, [cartData]);
-
+    const isCartEmpty = Object.keys(cartItems).every((productId) =>
+      Object.values(cartItems[productId]).every((qty) => qty === 0)
+    );
+    if (isCartEmpty) {
+      setIsDrawerOpen(false);
+    }
+  }, [cartItems]);
 
   return (
-    <Dialog open={isDrawerOpen} onClose={setIsDrawerOpen} className="relative z-50">
+    <Dialog
+      open={isDrawerOpen}
+      onClose={setIsDrawerOpen}
+      className="relative z-50"
+    >
       <div className="fixed inset-0 bg-black/30 transition-opacity" />
 
       <div className="fixed inset-0 overflow-hidden">
@@ -50,9 +58,9 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             <DialogPanel className="pointer-events-auto w-screen max-w-md transform bg-white shadow-xl flex flex-col h-full">
               {/* Header */}
-              <div className="flex items-start justify-between p-6 border-b border-gray-200">
-                <DialogTitle className="text-lg font-semibold text-gray-900">
-                  Your Cart
+              <div className="flex items-start justify-between px-6 pt-4 border-b border-gray-200">
+                <DialogTitle className="text-xl">
+                  <Title text1="MY" text2="CART" />
                 </DialogTitle>
                 <button
                   onClick={() => setIsDrawerOpen(false)}
@@ -65,15 +73,16 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
               {/* Scrollable Cart Content */}
               <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
                 {cartData.map((item, index) => {
-                  const product = products.find(p => p._id === item._id);
+                  const product = products.find((p) => p._id === item._id);
                   if (!product) return null;
 
                   return (
                     <div
                       key={index}
-                      className="grid grid-cols-[4fr_1fr_auto] items-center gap-4 border-b border-gray-200 pb-4"
+                      className="grid grid-cols-[1fr_auto_auto] items-center gap-4 border-b border-gray-200 pb-4"
                     >
-                      <div className="flex gap-4">
+                      {/* Product Info */}
+                      <div className="flex gap-4 items-center">
                         <img
                           src={product.image[0]}
                           alt={product.name}
@@ -92,23 +101,48 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
                           </div>
                         </div>
                       </div>
-                      <input
-                        type="number"
-                        min={1}
-                        defaultValue={item.quantity}
-                        onChange={(e) =>
-                          e.target.value === "" || e.target.value === "0"
-                            ? null
-                            : updateQuantity(item._id, item.size, Number(e.target.value))
-                        }
-                        className="w-12 border px-1 py-1 text-sm text-center"
-                      />
-                      <img
-                        src={assets.bin_icon}
-                        alt="Delete"
-                        onClick={() => updateQuantity(item._id, item.size, 0)}
-                        className="w-5 h-5 cursor-pointer"
-                      />
+
+                      {/* Quantity Selector */}
+                      <div className="flex items-center border overflow-hidden w-fit">
+                        <button
+                          onClick={() =>
+                            updateQuantity(
+                              item._id,
+                              item.size,
+                              item.quantity - 1
+                            )
+                          }
+                          className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:text-gray-300"
+                          disabled={item.quantity <= 1}
+                        >
+                          -
+                        </button>
+                        <span className="w-8 h-8 flex items-center justify-center text-sm font-medium border-x">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() =>
+                            updateQuantity(
+                              item._id,
+                              item.size,
+                              item.quantity + 1
+                            )
+                          }
+                          className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                        >
+                          +
+                        </button>
+                      </div>
+
+                      {/* Delete Icon */}
+                      <div className="flex justify-end">
+                        <img
+                          src={assets.bin_icon}
+                          alt="Delete"
+                          onClick={() => updateQuantity(item._id, item.size, 0)}
+                          className="w-5 h-5 cursor-pointer"
+                        />
+                      </div>
                     </div>
                   );
                 })}
@@ -133,24 +167,27 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
                     <span>Total</span>
                     <span>
                       {currency}{" "}
-                      {getCartAmount() === 0 ? 0 : getCartAmount() + delivery_fee}.00
+                      {getCartAmount() === 0
+                        ? 0
+                        : getCartAmount() + delivery_fee}
+                      .00
                     </span>
                   </div>
                 </div>
 
                 <div className="flex justify-end gap-3">
-                  <button
-                    onClick={setIsDrawerOpen}
-                    className="border px-4 py-2 rounded text-sm"
+                  <Link
+                    to="/place-order"
+                    className="border px-4 py-2 text-sm"
                   >
                     Continue Shopping
-                  </button>
-                  <a
-                    href="/cart"
-                    className="bg-black text-white px-4 py-2 rounded text-sm"
+                  </Link>
+                  <Link
+                    to="/cart"
+                    className="bg-black text-white px-4 py-2 text-sm"
                   >
                     Go to Cart
-                  </a>
+                  </Link>
                 </div>
               </div>
             </DialogPanel>

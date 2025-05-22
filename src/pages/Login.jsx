@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router";
 
 const Login = () => {
   const [currentState, setCurrentState] = useState("Login");
@@ -10,6 +11,10 @@ const Login = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const location = useLocation();
+  const navigatePrevPage = useNavigate();
+  const from = location.state?.from || "/";
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -23,8 +28,9 @@ const Login = () => {
         if (response.data.success) {
           setToken(response.data.data.token);
           localStorage.setItem("token", response.data.data.token);
-          localStorage.setItem("userInfo", JSON.stringify(response.data.data))
-          toast.success("Registration Successful")
+          localStorage.setItem("userInfo", JSON.stringify(response.data.data));
+          toast.success("Registration Successful");
+          navigatePrevPage(from, { replace: true });
         } else {
           toast.error(response.data.message);
         }
@@ -36,8 +42,9 @@ const Login = () => {
         if (response.data.success) {
           setToken(response.data.data.token);
           localStorage.setItem("token", response.data.data.token);
-          localStorage.setItem("userInfo", JSON.stringify(response.data.data))
-          toast.success("Login Successful")
+          localStorage.setItem("userInfo", JSON.stringify(response.data.data));
+          toast.success("Login Successful");
+          navigatePrevPage(from, { replace: true });
         } else {
           toast.error(response.data.message);
         }
@@ -47,12 +54,6 @@ const Login = () => {
       toast.error(error.message);
     }
   };
-
-  useEffect(() => {
-    if (token) {
-      navigate("/");
-    }
-  }, [token]);
 
   return (
     <form
