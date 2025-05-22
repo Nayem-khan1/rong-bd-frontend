@@ -15,10 +15,12 @@ import { Toaster } from 'react-hot-toast';
 import Cart from './pages/Cart'
 import Verify from './pages/Verify'
 import Profile from './pages/Profile'
+import { ScrollToTop } from './components/common/ScrollToTop'
 
 function App() {
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+      <ScrollToTop/>
       <Toaster position="top-center" reverseOrder={false} />
       <Navbar/>
       <SearchBar/>
