@@ -94,7 +94,7 @@ const Collection = () => {
   }, [sortType]);
 
   return (
-    <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t border-gray-300">
+    <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t border-gray-300 relative">
       {/* Filter option */}
       <div className="min-w-60">
         <p
@@ -121,6 +121,7 @@ const Collection = () => {
                 className="w-3"
                 type="checkbox"
                 value={"Men"}
+                checked={category.includes("Men")}
                 onChange={toggleCategory}
               />{" "}
               Men
@@ -130,6 +131,7 @@ const Collection = () => {
                 className="w-3"
                 type="checkbox"
                 value={"Women"}
+                checked={category.includes("Women")}
                 onChange={toggleCategory}
               />{" "}
               Women
@@ -139,6 +141,7 @@ const Collection = () => {
                 className="w-3"
                 type="checkbox"
                 value={"Kids"}
+                checked={category.includes("Kids")}
                 onChange={toggleCategory}
               />{" "}
               Kids
@@ -158,6 +161,7 @@ const Collection = () => {
                 className="w-3"
                 type="checkbox"
                 value={"Topwear"}
+                checked={subCategory.includes("Topwear")}
                 onChange={toggleSubCategory}
               />{" "}
               Topwear
@@ -167,6 +171,7 @@ const Collection = () => {
                 className="w-3"
                 type="checkbox"
                 value={"Bottomwear"}
+                checked={subCategory.includes("Bottomwear")}
                 onChange={toggleSubCategory}
               />{" "}
               Bottomwear
@@ -176,12 +181,22 @@ const Collection = () => {
                 className="w-3"
                 type="checkbox"
                 value={"Winterwear"}
+                checked={subCategory.includes("Winterwear")}
                 onChange={toggleSubCategory}
               />{" "}
               Winterwear
             </p>
           </div>
         </div>
+        {/* Reset Button */}
+        <button
+          onClick={resetFilters}
+          className={`border border-gray-300 text-red-600 py-2 px-4 mt-6 ${
+            showFilter ? "mb-4" : "hidden"
+          } sm:block`}
+        >
+          CLEAR ALL
+        </button>
       </div>
 
       {/* Right side */}
