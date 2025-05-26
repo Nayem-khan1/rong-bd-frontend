@@ -4,14 +4,15 @@ import { assets } from "../assets/assets";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
 import { useSearchParams } from "react-router";
+import { Filter, X, Menu } from "lucide-react";
 
 const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
-  const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [sortType, setSortType] = useState("relevant");
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   let [searchParams] = useSearchParams();
   const initialCategory = searchParams.get("category");
@@ -95,25 +96,94 @@ const Collection = () => {
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t border-gray-300 relative">
+      {/* Mobile Filter Button */}
+      <div className="sm:hidden mb-4">
+        <button
+          onClick={() => setMobileFilterOpen(true)}
+          className="flex items-center gap-2 border border-gray-300 px-3 py-1"
+        >
+          <Filter className="w-4 h-4" />
+          Filters
+        </button>
+      </div>
+      {/* Overlay Filter Menu for Mobile */}
+      {mobileFilterOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end">
+          <div className="w-3/4 bg-white h-full p-5 overflow-y-auto">
+            {/* Close Button */}
+            <button
+              onClick={() => setMobileFilterOpen(false)}
+              className="text-red-600 mb-4 font-semibold flex"
+            >
+              <X/> Close
+            </button>
+
+            {/* Filters go here (reuse same filters) */}
+            <div>
+              <p className="text-lg font-semibold mb-2">Categories</p>
+              {["Men", "Women", "Kids"].map((cat) => (
+                <label key={cat} className="flex gap-2 mb-2 text-sm">
+                  <input
+                    type="checkbox"
+                    value={cat}
+                    checked={category.includes(cat)}
+                    onChange={toggleCategory}
+                  />
+                  {cat}
+                </label>
+              ))}
+
+              <p className="text-lg font-semibold mt-4 mb-2">Type</p>
+              {["Topwear", "Bottomwear", "Winterwear"].map((type) => (
+                <label key={type} className="flex gap-2 mb-2 text-sm">
+                  <input
+                    type="checkbox"
+                    value={type}
+                    checked={subCategory.includes(type)}
+                    onChange={toggleSubCategory}
+                  />
+                  {type}
+                </label>
+              ))}
+
+              {/* Action Buttons */}
+              <div className="mt-6 flex gap-4">
+                <button
+                  onClick={() => {
+                    applyFilter();
+                    setMobileFilterOpen(false);
+                  }}
+                  className="flex-1 bg-black text-white py-2 "
+                >
+                  Apply
+                </button>
+                <button
+                  onClick={resetFilters}
+                  className="flex-1 border border-gray-400 py-2 text-red-500"
+                >
+                  Clear All
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Filter option */}
-      <div className="min-w-60">
-        <p
-          onClick={() => setShowFilter(!showFilter)}
-          className="my-2 text-xl flex items-center cursor-pointer gap-2"
-        >
-          FILTERS
-          <img
-            className={`h-3 sm:hidden ${showFilter ? "rotate-90" : ""}`}
-            src={assets.dropdown_icon}
-            alt=""
-          />
-        </p>
+      <div className="hidden sm:block min-w-60">
+        <div className="hidden sm:flex justify-between items-center ">
+          <p className="my-2 text-xl flex items-center gap-2">FILTERS</p>
+
+          {/* Reset Button */}
+          <button
+            onClick={resetFilters}
+            className={` text-red-600 py-2 px-4 mt-4 hover:underline sm:block cursor-pointer`}
+          >
+            CLEAR ALL
+          </button>
+        </div>
         {/* Category Filter */}
-        <div
-          className={`border border-gray-300 pl-5 py-3 mt-6 ${
-            showFilter ? "" : "hidden"
-          } sm:block`}
-        >
+        <div className={`border border-gray-300 pl-5 py-3 mt-6 sm:block`}>
           <p className="mb-3 text-sm font-medium">CATEGORIES</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             <p className="flex gap-2">
@@ -149,11 +219,7 @@ const Collection = () => {
           </div>
         </div>
         {/* SubCategory Filter */}
-        <div
-          className={`border border-gray-300 pl-5 py-3 my-5 mt-6 ${
-            showFilter ? "" : "hidden"
-          } sm:block`}
-        >
+        <div className={`border border-gray-300 pl-5 py-3 my-5 mt-6 sm:block`}>
           <p className="mb-3 text-sm font-medium">Type</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             <p className="flex gap-2">
@@ -188,15 +254,6 @@ const Collection = () => {
             </p>
           </div>
         </div>
-        {/* Reset Button */}
-        <button
-          onClick={resetFilters}
-          className={`border border-gray-300 text-red-600 py-2 px-4 mt-6 ${
-            showFilter ? "mb-4" : "hidden"
-          } sm:block cursor-pointer`}
-        >
-          CLEAR ALL
-        </button>
       </div>
 
       {/* Right side */}
