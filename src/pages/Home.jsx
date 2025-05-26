@@ -5,14 +5,16 @@ import BestSeller from '../components/BestSeller'
 import OurPolicy from '../components/OurPolicy'
 import NewsletterBox from '../components/NewsletterBox'
 import Category from '../components/Category'
+import Offer from '../components/Offer'
 
 const Home = () => {
   return (
     <div>
         <Hero/>
         <Category/>
-        <LatestCollection/>
         <BestSeller/>
+        <Offer/>
+        <LatestCollection/>
         <OurPolicy/>
         <NewsletterBox/>
     </div>
