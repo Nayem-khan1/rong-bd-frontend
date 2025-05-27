@@ -1,18 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
-import { assets } from "../assets/assets";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
 import { useSearchParams } from "react-router";
 import { Filter, X, Menu } from "lucide-react";
+import ProductItemSkeleton from "../components/ui/ProductItemSkeleton";
 
 const Collection = () => {
-  const { products, search, showSearch } = useContext(ShopContext);
+  const { products, search, showSearch, isProductLoading } = useContext(ShopContext);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [sortType, setSortType] = useState("relevant");
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+
+  const SKELETON_COUNT = 20;
 
   let [searchParams] = useSearchParams();
   const initialCategory = searchParams.get("category");
@@ -272,15 +274,20 @@ const Collection = () => {
         </div>
         {/* Map Products */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
-          {filterProducts.map((item, index) => (
-            <ProductItem
-              key={index}
-              name={item.name}
-              image={item.image}
-              id={item._id}
-              price={item.price}
-            />
-          ))}
+          
+        {isProductLoading
+          ? Array.from({ length: SKELETON_COUNT }).map((_, idx) => (
+              <ProductItemSkeleton key={idx} />
+            ))
+          : filterProducts.map((item, index) => (
+              <ProductItem
+                key={index}
+                name={item.name}
+                image={item.image}
+                price={item.price}
+                id={item._id}
+              />
+            ))}
         </div>
       </div>
     </div>

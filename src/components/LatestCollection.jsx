@@ -2,14 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "./Title";
 import ProductItem from "./ProductItem";
+import ProductItemSkeleton from "./ui/ProductItemSkeleton";
 
 const LatestCollection = () => {
-  const { products } = useContext(ShopContext);
+  const { products, isProductLoading } = useContext(ShopContext);
   const [latestProducts, setLatestProducts] = useState([]);
 
   useEffect(() => {
     setLatestProducts(products.slice(0, 10));
   }, [products]);
+
+  const SKELETON_COUNT = 10;
 
   return (
     <div className="my-10">
@@ -25,15 +28,19 @@ const LatestCollection = () => {
 
       {/* Rendering Products */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
-        {latestProducts.map((item, index) => (
-          <ProductItem
-            key={index}
-            id={item._id}
-            image={item.image}
-            name={item.name}
-            price={item.price}
-          />
-        ))}
+        {isProductLoading
+          ? Array.from({ length: SKELETON_COUNT }).map((_, idx) => (
+              <ProductItemSkeleton key={idx} />
+            ))
+          : latestProducts.map((item, index) => (
+              <ProductItem
+                key={index}
+                name={item.name}
+                image={item.image}
+                price={item.price}
+                id={item._id}
+              />
+            ))}
       </div>
     </div>
   );
