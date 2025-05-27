@@ -177,7 +177,7 @@ const Collection = () => {
           {/* Reset Button */}
           <button
             onClick={resetFilters}
-            className={` text-red-600 py-2 px-4 mt-4 hover:underline sm:block cursor-pointer`}
+            className={` text-red-600 py-2 px-4 hover:underline sm:block cursor-pointer`}
           >
             CLEAR ALL
           </button>
