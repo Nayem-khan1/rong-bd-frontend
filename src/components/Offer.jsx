@@ -7,7 +7,7 @@ const Offer = () => {
   return (
     <div className="">
       {/* Section Title */}
-      <div className="text-center text-3xl py-8">
+      <div className="text-center text-3xl pb-8">
         <Title text1={"SPECIAL "} text2={"OFFER"} />
         <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
           Limited Time Deal
@@ -15,7 +15,7 @@ const Offer = () => {
       </div>
 
       {/* Offer Content */}
-      <div className="flex flex-col sm:flex-row justify-between items-center bg-black text-white text-center">
+      <div className="flex flex-col sm:flex-row justify-between items-center bg-secondary text-white text-center">
         {/* Offer Text */}
         <div className="py-10 flex-1">
           <div className="flex justify-center mb-4">
@@ -26,7 +26,7 @@ const Offer = () => {
           </p>
           <p className="text-2xl sm:text-3xl font-semibold">FIRST ORDER</p>
           <Link to="/collection">
-            <button className="mt-6 sm:mt-10 border border-white bg-white text-black px-8 py-4 text-sm font-medium cursor-pointer hover:bg-black hover:text-white transition-all duration-300">
+            <button className="mt-6 sm:mt-10 border border-white bg-white text-black px-8 py-4 text-sm font-medium cursor-pointer hover:bg-primary hover:text-white transition-all duration-300">
               EXPLORE PRODUCTS
             </button>
           </Link>

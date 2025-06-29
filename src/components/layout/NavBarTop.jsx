@@ -28,7 +28,7 @@ const NavBarTop = () => {
                 to={`tel:${"+8801723456543"}`}
                 className="font-bold text-primary ml-1"
               >
-                "+8801723456543"
+                +8801723456543
               </a>
             </span>
 

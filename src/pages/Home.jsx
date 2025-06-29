@@ -50,7 +50,7 @@ const Home = () => {
           <LatestCollection />
         </div>
       </div>
-      <div className="bg-gray-100 lg:py-16 py-10">
+      <div className="bg-gray-100">
         <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
           <OurPolicy />
         </div>

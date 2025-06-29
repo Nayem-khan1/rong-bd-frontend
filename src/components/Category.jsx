@@ -6,7 +6,7 @@ import Title from "./Title";
 const Category = () => {
   return (
     <div className="">
-      <div className="text-center text-3xl py-8">
+      <div className="text-center text-3xl pb-8">
         <Title text1={"Featured"} text2={"Categories"} />
         <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
           Choose your necessary products from this feature categories
