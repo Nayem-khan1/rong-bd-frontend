@@ -5,7 +5,7 @@ import NewsletterBox from "../components/NewsletterBox";
 
 function Contact() {
   return (
-    <div>
+    <div className="">
       <div className="text-center text-2xl pt-10 border-t border-gray-300">
         <Title text1={"CONTACT"} text2={"US"} />
       </div>
@@ -29,12 +29,14 @@ function Contact() {
           <p className="text-gray-500">
             Learn more about our teams and job openings.
           </p>
-          <button className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500 cursor-pointer">
+          <button className="border border-primary px-8 py-4 text-sm hover:bg-secondary hover:text-white transition-all duration-500 cursor-pointer">
             Explore Jobs
           </button>
         </div>
       </div>
-      <NewsletterBox />
+      <div className="py-10">
+        <NewsletterBox />
+      </div>
     </div>
   );
 }

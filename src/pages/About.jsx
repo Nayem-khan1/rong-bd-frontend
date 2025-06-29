@@ -5,7 +5,7 @@ import NewsletterBox from "../components/NewsletterBox";
 
 function About() {
   return (
-    <div>
+    <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
       <div className="text-2xl text-center pt-8 border-t border-gray-300">
         <Title text1={"ABOUT"} text2={"US"} />
       </div>
@@ -62,18 +62,22 @@ function About() {
         <div className="border border-gray-300 px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
           <b>Convenience:</b>
           <p className="text-gray-600">
-            Our online shopping experience is designed to be smooth and simple. With fast delivery, secure payment options, and a user-friendly interface, shopping at LIVEYET is quick, easy, and hassle-free.
+            Our online shopping experience is designed to be smooth and simple.
+            With fast delivery, secure payment options, and a user-friendly
+            interface, shopping at LIVEYET is quick, easy, and hassle-free.
           </p>
         </div>
 
         <div className="border border-gray-300 px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5">
           <b>Ecceptional Custorme Service:</b>
           <p className="text-gray-600">
-            Your satisfaction is our priority. Our dedicated support team is here to assist you with any inquiries, returns, or size guidance—ensuring you always get what fits and feels right.
+            Your satisfaction is our priority. Our dedicated support team is
+            here to assist you with any inquiries, returns, or size
+            guidance—ensuring you always get what fits and feels right.
           </p>
         </div>
       </div>
-      <div className="pt-20">
+      <div className="py-20">
         <NewsletterBox />
       </div>
     </div>

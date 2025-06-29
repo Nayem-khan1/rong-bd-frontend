@@ -115,7 +115,7 @@ const PlaceOrder = () => {
   };
 
   return (
-    <>
+    <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
       <form
         onSubmit={onSubmitHandler}
         className="flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t border-gray-300"
@@ -251,7 +251,7 @@ const PlaceOrder = () => {
             <div className="w-full text-end mt-8">
               <button
                 type="submit"
-                className="bg-black text-white px-16 py-3 text-sm cursor-pointer"
+                className="bg-primary text-white px-16 py-3 text-sm cursor-pointer"
               >
                 PLACE ORDER
               </button>
@@ -260,7 +260,7 @@ const PlaceOrder = () => {
         </div>
       </form>
       <Modal open={open} setOpen={setOpen} redirectPath={location.pathname} />
-    </>
+    </div>
   );
 };
 

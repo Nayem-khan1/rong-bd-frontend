@@ -27,7 +27,7 @@ function Cart() {
     }
   }, [cartItems, products]);
   return (
-    <div className="border-t border-gray-300 pt-14">
+    <div className="mx-auto max-w-screen-2xl px-3 sm:px-10 border-t border-gray-300 pt-10">
       <div className="text-2xl mb-3">
         <Title text1={"YOUR"} text2={"CART"} />
       </div>
@@ -85,7 +85,7 @@ function Cart() {
                       onClick={() =>
                         updateQuantity(item._id, item.size, item.quantity - 1)
                       }
-                      className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:text-gray-300"
+                      className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:text-gray-300 cursor-pointer"
                       disabled={item.quantity <= 1}
                     >
                       -
@@ -97,7 +97,7 @@ function Cart() {
                       onClick={() =>
                         updateQuantity(item._id, item.size, item.quantity + 1)
                       }
-                      className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                      className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 cursor-pointer"
                     >
                       +
                     </button>
@@ -118,7 +118,7 @@ function Cart() {
               <div className="w-full text-end">
                 <button
                   onClick={() => navigate("/place-order")}
-                  className="bg-black text-white text-sm my-8 px-8 py-3 cursor-pointer"
+                  className="bg-primary text-white text-sm my-8 px-8 py-3 cursor-pointer"
                 >
                   PROCEED TO CHECKOUT
                 </button>
