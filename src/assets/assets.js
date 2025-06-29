@@ -1,4 +1,3 @@
-
 import logo from "./logo.svg";
 import hero_img from "./hero_img.jpg";
 import banner1 from "./banner1.jpg";
@@ -42,10 +41,22 @@ import razorpay_logo from "./razorpay_logo.png";
 import stripe_logo from "./stripe_logo.png";
 import offerImage from "./offer.jpg";
 import cross_icon from "./cross_icon.png";
+import logoWhite from "./logoWhite.svg";
+import slider1 from "./slider1.png";
+import slider2 from "./slider2.png";
+import slider3 from "./slider3.png";
+import slider4 from "./slider4.png";
+import slider5 from "./slider5.png";
 
 export const assets = {
   logo,
+  logoWhite,
   hero_img,
+  slider1,
+  slider2,
+  slider3,
+  slider4,
+  slider5,
   banner1,
   banner2,
   banner3,
@@ -88,4 +99,3 @@ export const assets = {
   cross_icon,
   offerImage,
 };
-

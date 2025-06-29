@@ -9,7 +9,13 @@ a.active hr {
 * {
   font-family: Outfit;
 }
-
+body {
+  background-color: #fbf4f6;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  display: none !important;
+}
 .prata-regular {
   font-family: "Prata", serif;
   font-weight: 400;
@@ -28,4 +34,8 @@ a.active hr {
 }
 
 @theme {
+  --color-background: #fbf4f6;
+  --color-primary: #bc5276;
+  --color-secondary: #dbb79f;
+  --color-accent: #cdae7e;
 }

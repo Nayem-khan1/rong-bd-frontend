@@ -5,9 +5,12 @@ import Title from "./Title";
 
 const Category = () => {
   return (
-    <div className="my-10">
-      <div className="text-center py-8 text-3xl">
-        <Title text1={"SHOP BY"} text2={"CATEGORY"} />
+    <div className="">
+      <div className="text-center text-3xl py-8">
+        <Title text1={"Featured"} text2={"Categories"} />
+        <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
+          Choose your necessary products from this feature categories
+        </p>
       </div>
       {/* Category Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">

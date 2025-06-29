@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 const Offer = () => {
   return (
-    <div className="mt-10">
+    <div className="">
       {/* Section Title */}
       <div className="text-center text-3xl py-8">
         <Title text1={"SPECIAL "} text2={"OFFER"} />

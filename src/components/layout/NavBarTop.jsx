@@ -17,60 +17,51 @@ const NavBarTop = () => {
     <>
       <div className="hidden lg:block bg-gray-100">
         <div className="max-w-screen-2xl mx-auto px-3 sm:px-10">
-          <div className="text-gray-700 py-2 font-sans text-xs font-medium border-b flex justify-between items-center">
+          <div className="text-gray-700 py-2 font-sans text-xs font-medium flex justify-between items-center">
             <span className="flex items-center">
               <FiPhoneCall className="mr-2" />
               {/* {showingTranslateValue(
                 storeCustomizationSetting?.navbar?.help_text
               )} */}{" "}
-              Help line
+              We are available 24/7, need help?
               <a
-                to={`tel:${"+099949343"}`}
-                className="font-bold text-emerald-500 ml-1"
+                to={`tel:${"+8801723456543"}`}
+                className="font-bold text-primary ml-1"
               >
-                "+099949343"
+                "+8801723456543"
               </a>
             </span>
 
             <div className="lg:text-right flex items-center navBar">
               <div>
-                <Link
-                  to="/about-us"
-                  className="font-medium hover:text-emerald-600"
-                >
+                <Link to="/about" className="font-medium hover:text-primary">
                   {/* {showingTranslateValue(
                       storeCustomizationSetting?.navbar?.about_us
                     )} */}
-                  about us
+                  About Us
                 </Link>
                 <span className="mx-2">|</span>
               </div>
               <div>
-                <Link
-                  to="/contact-us"
-                  className="font-medium hover:text-emerald-600"
-                >
+                <Link to="/contact" className="font-medium hover:text-primary">
                   {/* {showingTranslateValue(
                       storeCustomizationSetting?.navbar?.contact_us
                     )} */}
-                  contact us
+                  Contact Us
                 </Link>
                 <span className="mx-2">|</span>
               </div>
-              <Link
-                to="/user/my-account"
-                className="font-medium hover:text-emerald-600"
-              >
+              <Link to="/profile" className="font-medium hover:text-primary">
                 {/* {showingTranslateValue(
                   storeCustomizationSetting?.navbar?.my_account
                 )} */}
-                my account
+                My Account
               </Link>
               <span className="mx-2">|</span>
               {user?.email ? (
                 <button
                   //   onClick={handleLogOut}
-                  className="flex items-center font-medium hover:text-emerald-600"
+                  className="flex items-center font-medium hover:text-primary"
                 >
                   <span className="mr-1">
                     <IoLockOpenOutline />
@@ -78,12 +69,12 @@ const NavBarTop = () => {
                   {/* {showingTranslateValue(
                     storeCustomizationSetting?.navbar?.logout
                   )} */}{" "}
-                  logout
+                  Logout
                 </button>
               ) : (
                 <Link
-                  to="/auth/login"
-                  className="flex items-center font-medium hover:text-emerald-600"
+                  to="/login"
+                  className="flex items-center font-medium hover:text-primary"
                 >
                   <span className="mr-1">
                     <FiUser />
@@ -91,7 +82,7 @@ const NavBarTop = () => {
                   {/* {showingTranslateValue(
                     storeCustomizationSetting?.navbar?.login
                   )} */}
-                  login
+                  Login
                 </Link>
               )}
             </div>

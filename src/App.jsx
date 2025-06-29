@@ -17,30 +17,28 @@ import Profile from "./pages/Profile";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Navbar from "./components/layout/Navbar";
 import MobileFooter from "./components/layout/footer/MobileFooter";
+import Main from "./layout/Main";
 
 function App() {
   return (
-    <div className="">
+    <>
       <ScrollToTop />
-      <Toaster position="top-center" reverseOrder={false} />
-      <Navbar />
-      <MobileFooter />
-      <SearchBar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/collection" element={<Collection />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/product/:productId" element={<Product />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/place-order" element={<PlaceOrder />} />
-        <Route path="/orders" element={<Order />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/verify" element={<Verify />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route element={<Main />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/product/:productId" element={<Product />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/place-order" element={<PlaceOrder />} />
+          <Route path="/orders" element={<Order />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/verify" element={<Verify />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
       </Routes>
-      <Footer />
-    </div>
+    </>
   );
 }
 
