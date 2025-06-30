@@ -18,7 +18,7 @@ const Banner = () => {
         </div>
         <Link
           to="/collection"
-          className="text-sm font-serif font-medium px-6 py-2 bg-primary text-center rounded-full text-white hover:bg-primary"
+          className="text-sm font-serif font-medium px-6 py-2 bg-primary text-center text-white hover:bg-primary"
         >
           Shop Now
         </Link>

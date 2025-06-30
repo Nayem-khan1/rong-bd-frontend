@@ -65,13 +65,13 @@ const Navbar = () => {
               <div className="flex flex-col mx-auto w-full">
                 <form
                   onSubmit={handleSubmit}
-                  className="relative pr-12 md:pr-14 bg-white overflow-hidden shadow-sm rounded-md w-full"
+                  className="relative pr-12 md:pr-14 bg-white overflow-hidden shadow-sm w-full"
                 >
                   <label className="flex items-center py-0.5">
                     <input
                       onChange={(e) => setSearchText(e.target.value)}
                       value={searchText}
-                      className="form-input w-full pl-5 appearance-none transition ease-in-out border text-input text-sm font-sans rounded-md min-h-10 h-10 duration-200 bg-white focus:ring-0 outline-none border-none focus:outline-none placeholder-gray-500 placeholder-opacity-75"
+                      className="form-input w-full pl-5 appearance-none transition ease-in-out border text-input text-sm font-sans min-h-10 h-10 duration-200 bg-white focus:ring-0 outline-none border-none focus:outline-none placeholder-gray-500 placeholder-opacity-75"
                       // placeholder={t("search-placeholder")}
                       placeholder="Search"
                     />

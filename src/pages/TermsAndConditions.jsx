@@ -60,7 +60,7 @@ const TermsAndConditions = () => {
           {/* <img
             src=""
             alt="Terms"
-            className="w-40 md:w-56 rounded-lg shadow-sm"
+            className="w-40 md:w-56 shadow-sm"
           /> */}
         </div>
       </div>
@@ -70,7 +70,7 @@ const TermsAndConditions = () => {
         {terms.map((term, index) => (
           <div
             key={index}
-            className="bg-white border border-accent rounded-xl p-6 shadow-sm hover:shadow-md transition"
+            className="bg-white border border-accent p-6 shadow-sm hover:shadow-md transition"
           >
             <div className="flex items-start gap-4">
               {term.icon}

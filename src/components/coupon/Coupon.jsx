@@ -38,7 +38,7 @@ const Coupon = () => {
       {staticCoupons.map((coupon) => (
         <div
           key={coupon._id}
-          className="coupon coupon-home mx-4 my-5 block md:flex lg:flex md:justify-between lg:justify-between items-center bg-white rounded-md shadow"
+          className="coupon coupon-home mx-4 my-5 block md:flex lg:flex md:justify-between lg:justify-between items-center bg-white shadow"
         >
           <div className="tengah py-2 px-3 flex items-center justify-items-start">
             <div className="ml-3">
@@ -53,11 +53,11 @@ const Coupon = () => {
                 </h6>
                 <div className="ml-2">
                   {dayjs().isAfter(dayjs(coupon.endTime)) ? (
-                    <span className="text-red-600 inline-block px-4 py-1 rounded-full font-medium text-xs bg-red-100">
+                    <span className="text-red-600 inline-block px-4 py-1 font-medium text-xs bg-red-100">
                       Inactive
                     </span>
                   ) : (
-                    <span className="text-primary inline-block px-4 py-1 rounded-full font-medium text-xs bg-pink-100">
+                    <span className="text-primary inline-block px-4 py-1 font-medium text-xs bg-pink-100">
                       Active
                     </span>
                   )}
@@ -69,19 +69,19 @@ const Coupon = () => {
               {dayjs().isAfter(dayjs(coupon.endTime)) ? (
                 <span className="inline-block mb-2">
                   <div className="flex items-center font-semibold">
-                    <span className="flex items-center justify-center bg-red-500 text-white text-sm font-serif font-semibold mx-1 px-2 py-1 rounded">
+                    <span className="flex items-center justify-center bg-red-500 text-white text-sm font-serif font-semibold mx-1 px-2 py-1">
                       00
                     </span>
                     :
-                    <span className="flex items-center justify-center bg-red-500 text-white text-sm font-serif font-semibold mx-1 px-2 py-1 rounded">
+                    <span className="flex items-center justify-center bg-red-500 text-white text-sm font-serif font-semibold mx-1 px-2 py-1">
                       00
                     </span>
                     :
-                    <span className="flex items-center justify-center bg-red-500 text-white text-sm font-serif font-semibold mx-1 px-2 py-1 rounded">
+                    <span className="flex items-center justify-center bg-red-500 text-white text-sm font-serif font-semibold mx-1 px-2 py-1">
                       00
                     </span>
                     :
-                    <span className="flex items-center justify-center bg-red-500 text-white text-sm font-serif font-semibold mx-1 px-2 py-1 rounded">
+                    <span className="flex items-center justify-center bg-red-500 text-white text-sm font-serif font-semibold mx-1 px-2 py-1">
                       00
                     </span>
                   </div>
@@ -102,7 +102,7 @@ const Coupon = () => {
             <div className="info flex items-center">
               <div className="w-full">
                 <div className="block">
-                  <div className="font-serif border border-dashed bg-pink-50 py-1 border-primary-300 rounded-lg text-center block">
+                  <div className="font-serif border border-dashed bg-pink-50 py-1 border-primary-300 text-center block">
                     <CopyToClipboard
                       text={coupon.couponCode}
                       onCopy={() => handleCopied(coupon.couponCode)}
