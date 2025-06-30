@@ -117,6 +117,18 @@ const Login = () => {
       <button className="bg-primary text-white font-light px-8 py-2 mt-4 cursor-pointer">
         {currentState === "Login" ? "Sign In" : "Sign Up"}
       </button>
+      {currentState === "Login" && (
+        <button
+          type="button"
+          onClick={() => {
+            setEmail("user@gmail.com");
+            setPassword("12345678");
+          }}
+          className="border border-primary text-primary px-8 py-2 mt-2 hover:bg-primary hover:text-white transition"
+        >
+          Fill Demo Credentials
+        </button>
+      )}
     </form>
   );
 };

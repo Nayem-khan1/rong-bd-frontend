@@ -12,13 +12,6 @@ import {
   FiPhoneIncoming,
 } from "react-icons/fi";
 import { Link } from "react-router";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import {
-  ArchiveBoxXMarkIcon,
-  PencilIcon,
-  Square2StackIcon,
-  TrashIcon,
-} from "@heroicons/react/16/solid";
 
 //internal import
 
