@@ -1,15 +1,37 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Transition, Popover } from "@headlessui/react";
 import { ShopContext } from "../../context/ShopContext";
 import { assets } from "../../assets/assets";
 import { IoSearchOutline } from "react-icons/io5";
 import { FiShoppingCart, FiUser, FiBell } from "react-icons/fi";
 import { Link } from "react-router";
 import NavbarPromo from "./NavbarPromo";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 const Navbar = () => {
   const [searchText, setSearchText] = useState("");
-  const { getCartCount, token } = useContext(ShopContext);
+  const { getCartCount, token, navigate, setToken, setCartItems } =
+    useContext(ShopContext);
   const [user, setUser] = useState();
+
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef();
+
+  const logOut = () => {
+    navigate("/login");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userInfo");
+    setToken("");
+    setCartItems({});
+  };
+
+  const handleProfileClick = () => {
+    if (!token) {
+      navigate("/login");
+    } else {
+      setOpen(!open);
+    }
+  };
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -17,38 +39,22 @@ const Navbar = () => {
     setUser(parseUser);
   }, [token]);
 
-  //   const logOut = () => {
-  //     navigate("/login");
-  //     localStorage.removeItem("token");
-  //     localStorage.removeItem("userInfo");
-  //     setToken("");
-  //     setCartItems({});
-  //   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
 
-  //   const searchHandler = () => {
-  //     navigate("/collection");
-  //     setShowSearch(true);
-  //   };
+    document.addEventListener("mousedown", handleClickOutside);
 
-  //   const handleProfileClick = () => {
-  //     if (!token) {
-  //       navigate("/login");
-  //     } else {
-  //       setOpen(!open);
-  //     }
-  //   };
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // return;
-    // if (searchText) {
-    //   router.push(`/search?query=${searchText}`, null, { scroll: false });
-    //   setSearchText("");
-    //   handleLogEvent("search", `searched ${searchText}`);
-    // } else {
-    //   router.push(`/ `, null, { scroll: false });
-    //   setSearchText("");
-    // }
   };
   return (
     <div className="bg-primary sticky top-0 z-20">
@@ -105,35 +111,60 @@ const Navbar = () => {
               </span>
               <FiShoppingCart className="w-6 h-6 drop-shadow-xl" />
             </Link>
-            {/* Profile dropdown */}
 
-            <button
-              className="pl-5 text-white text-2xl font-bold"
-              aria-label="Login"
+            {/* Profile dropdown */}
+            <div
+              className="inline-flex relative pl-5 text-white text-2xl font-bold"
+              ref={menuRef}
             >
-              {user?.image ? (
-                <Link to="/user/dashboard" className="relative top-1 w-6 h-6">
-                  <Image
-                    width={29}
-                    height={29}
-                    src={user?.image}
-                    alt="user"
-                    className="bg-white rounded-full"
-                  />
-                </Link>
-              ) : user?.name ? (
-                <Link
-                  to="/user/dashboard"
-                  className="leading-none font-bold font-serif block"
+              {user?.name ? (
+                <p
+                  onClick={handleProfileClick}
+                  className="leading-none font-bold font-serif block cursor-pointer"
                 >
-                  {user?.name}
-                </Link>
+                  {user?.name} <ChevronDown className="inline-flex" />
+                </p>
               ) : (
-                <Link to="/auth/login">
+                <Link to="/login">
                   <FiUser className="w-6 h-6 drop-shadow-xl" />
                 </Link>
               )}
-            </button>
+
+              {token && open && (
+                <div className="absolute right-0 mt-8 z-30 w-40 bg-white border border-gray-200 rounded shadow-lg animate-fadeIn">
+                  <ul className="flex flex-col text-sm text-gray-700">
+                    <li
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => {
+                        navigate("/profile");
+                        setOpen(false);
+                      }}
+                    >
+                      Profile
+                    </li>
+                    <li
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => {
+                        navigate("/orders");
+                        setOpen(false);
+                      }}
+                    >
+                      Orders
+                    </li>
+                    <li
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center"
+                      onClick={() => {
+                        logOut();
+                        setOpen(false);
+                      }}
+                    >
+                      <span>Logout</span>
+                      <ArrowRight className="w-3 ml-2" />
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

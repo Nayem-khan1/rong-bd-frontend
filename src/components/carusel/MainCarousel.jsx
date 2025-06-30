@@ -88,8 +88,8 @@ const MainCarousel = () => {
                   {item.info}
                 </p>
                 <Link
-                  href={item.url}
-                  className="hidden sm:inline-block lg:inline-block text-sm leading-6 font-serif font-medium mt-6 px-6 py-2 bg-primary text-center rounded-md text-white hover:bg-primary"
+                  to={item.url}
+                  className="hidden sm:inline-block lg:inline-block text-sm leading-6 font-serif font-medium mt-6 px-6 py-2 bg-primary text-center text-white hover:bg-primary"
                 >
                   {item.buttonName}
                 </Link>
