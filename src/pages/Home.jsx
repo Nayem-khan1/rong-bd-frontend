@@ -14,7 +14,7 @@ import OfferCard from "../components/offer/OfferCard";
 const Home = () => {
   return (
     <div className="min-h-screen">
-      <StickyCart />
+      {/* <StickyCart /> */}
       <div className="bg-white">
         <div className="mx-auto py-5 max-w-screen-2xl px-3 sm:px-10">
           <div className="flex w-full">

@@ -134,7 +134,7 @@ const NavbarPromo = () => {
                                   },
                                   {
                                     icon: <FiFileText />,
-                                    to: "/terms-and-conditions",
+                                    to: "/terms-and-condition",
                                     text: "Terms and Condition",
                                   },
                                 ].map((item, index) => (
@@ -174,7 +174,7 @@ const NavbarPromo = () => {
             Privacy Policy
           </Link>
           <Link
-            to="/terms-and-conditions"
+            to="/terms-and-condition"
             className="font-serif mx-4 py-2 text-sm font-medium hover:text-primary"
           >
             Terms and Condition

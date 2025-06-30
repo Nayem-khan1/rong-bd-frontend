@@ -18,6 +18,8 @@ import { ScrollToTop } from "./components/common/ScrollToTop";
 import Navbar from "./components/layout/Navbar";
 import MobileFooter from "./components/layout/footer/MobileFooter";
 import Main from "./layout/Main";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="terms-and-condition" element={<TermsAndConditions />} />
         </Route>
       </Routes>
     </>
