@@ -37,7 +37,7 @@ const Product = () => {
   };
 
   return productData ? (
-    <div className="border-t-2 border-gray-300 pt-10 transition-opacity ease-in duration-500 opacity-100">
+    <div className="mx-auto max-w-screen-2xl px-3 sm:px-10 border-t border-gray-300 pt-10 transition-opacity ease-in duration-500 opacity-100">
       {/* Product data */}
       <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
         {/* Product images */}
@@ -92,7 +92,7 @@ const Product = () => {
           </div>
           <button
             onClick={() => handleAddToCart(productData._id, size)}
-            className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 cursor-pointer"
+            className="bg-primary text-white px-8 py-3 text-sm active:bg-secondary cursor-pointer"
           >
             ADD TO CART
           </button>

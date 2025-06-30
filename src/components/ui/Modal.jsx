@@ -1,8 +1,4 @@
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-} from "@headlessui/react";
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { useNavigate } from "react-router";
 
 const Modal = ({ open, setOpen, redirectPath }) => {
@@ -32,7 +28,7 @@ const Modal = ({ open, setOpen, redirectPath }) => {
               <button
                 type="button"
                 onClick={redirectToLogin}
-                className="border border-black px-4 py-2 text-sm hover:bg-black hover:text-white transition-all duration-500 cursor-pointer"
+                className="border border-primary px-4 py-2 text-sm hover:bg-primary hover:text-white transition-all duration-500 cursor-pointer"
               >
                 Go to Login
               </button>

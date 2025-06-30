@@ -14,7 +14,7 @@ const MainCarousel = () => {
       title: "Summer Collection 2025",
       info: "Discover light, breathable styles perfect for the sunny days ahead.",
       buttonName: "Shop Summer",
-      url: "/collection/summer",
+      url: "/collection",
       image: assets.slider1,
     },
     {
@@ -22,7 +22,7 @@ const MainCarousel = () => {
       title: "Kids Wear Bonanza",
       info: "Cute and comfy clothing for your little ones. Up to 30% off!",
       buttonName: "Shop Kids",
-      url: "/collection/men",
+      url: "/collection",
       image: assets.slider2,
     },
     {
@@ -30,7 +30,7 @@ const MainCarousel = () => {
       title: "Women's New Arrivals",
       info: "Fresh fashion trends, just in. Upgrade your wardrobe today!",
       buttonName: "Browse Women",
-      url: "/collection/women",
+      url: "/collection",
       image: assets.slider3,
     },
     {
@@ -38,7 +38,7 @@ const MainCarousel = () => {
       title: "Kids Wear Bonanza",
       info: "Cute and comfy clothing for your little ones. Up to 30% off!",
       buttonName: "Shop Kids",
-      url: "/collection/kids",
+      url: "/collection",
       image: assets.slider4,
     },
     {
@@ -46,7 +46,7 @@ const MainCarousel = () => {
       title: "Flat 40% Off Sale",
       info: "Grab your favorites before they're gone. Limited time only!",
       buttonName: "View Offers",
-      url: "/sale",
+      url: "/collection",
       image: assets.slider5,
     },
   ];

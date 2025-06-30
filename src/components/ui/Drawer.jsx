@@ -178,13 +178,13 @@ const Drawer = ({ isDrawerOpen, setIsDrawerOpen }) => {
                 <div className="flex justify-end gap-3">
                   <Link
                     to="/place-order"
-                    className="border px-4 py-2 text-sm"
+                    className="border border-primary bg-secondary px-4 py-2 text-sm"
                   >
                     Continue Shopping
                   </Link>
                   <Link
                     to="/cart"
-                    className="bg-black text-white px-4 py-2 text-sm"
+                    className="bg-primary text-white px-4 py-2 text-sm"
                   >
                     Go to Cart
                   </Link>

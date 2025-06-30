@@ -27,7 +27,7 @@ function Cart() {
     }
   }, [cartItems, products]);
   return (
-    <div className="mx-auto max-w-screen-2xl px-3 sm:px-10 border-t border-gray-300 pt-10">
+    <div className="mx-auto max-w-screen-2xl px-3 sm:px-10 border-t border-gray-300 py-10">
       <div className="text-2xl mb-3">
         <Title text1={"YOUR"} text2={"CART"} />
       </div>
@@ -41,7 +41,7 @@ function Cart() {
           <p className="text-lg font-semibold mb-4">Your cart is empty</p>
           <button
             onClick={() => navigate("/collection")}
-            className="bg-black text-white px-6 py-3 text-sm cursor-pointer hover:bg-gray-800"
+            className="bg-primary text-white px-6 py-3 text-sm cursor-pointer hover:bg-secondary"
           >
             Shop Now
           </button>
