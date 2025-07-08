@@ -1,12 +1,56 @@
-# React + Vite
+# 🛍️ RongBD – User Storefront
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive frontend for RongBD clothing eCommerce platform built with **React** and **Tailwind CSS**. Customers can browse products, add to cart, and complete orders with a smooth user experience.
 
-Currently, two official plugins are available:
+### 🌐 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 [https://rong-bd-frontend.vercel.app](https://rong-bd-frontend.vercel.app)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+- Beautiful product browsing experience
+- Add to cart, remove from cart
+- Secure user authentication with JWT
+- Checkout page (Cash on Delivery & Stripe Ready)
+- Responsive design for mobile, tablet, desktop
+- Language switch: Bangla ↔ English
+- Light / Dark mode toggle
+- Order confirmation & tracking
+- Built with **Vite** for blazing-fast performance
+
+---
+
+## ⚙️ Tech Stack
+
+- **React.js**
+- **Tailwind CSS**
+- **React Router**
+- **Context API**
+- **Axios**
+- **Vite**
+
+---
+
+## 🚀 Getting Started (Local)
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/your-username/rongbd-frontend.git
+cd rongbd-frontend
+npm install
+2. Run Development Server
+bash
+Copy
+Edit
+npm run dev
+Then visit: http://localhost:3000
+
+📄 License
+This project is licensed under the MIT License.
+
+👨‍💻 Developed by
+Md. Nayem Khan
+📧 nayemkhan4496@gmail.com
