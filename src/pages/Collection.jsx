@@ -53,19 +53,19 @@ const Collection = () => {
 
     if (showSearch && search) {
       productsCopy = productsCopy.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase())
+        item.name.toLowerCase().includes(search.toLowerCase()),
       );
     }
 
     if (category.length > 0) {
       productsCopy = productsCopy.filter((item) =>
-        category.includes(item.category)
+        category.includes(item.category),
       );
     }
 
     if (subCategory.length > 0) {
       productsCopy = productsCopy.filter((item) =>
-        subCategory.includes(item.subCategory)
+        subCategory.includes(item.subCategory),
       );
     }
 
@@ -112,152 +112,233 @@ const Collection = () => {
         </div>
         {/* Overlay Filter Menu for Mobile */}
         {mobileFilterOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end">
-            <div className="w-3/4 bg-white h-full p-5 overflow-y-auto">
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex justify-end transition-opacity">
+            <div className="w-[85%] max-w-sm bg-gray-50 h-full p-6 overflow-y-auto shadow-2xl flex flex-col">
               {/* Close Button */}
-              <button
-                onClick={() => setMobileFilterOpen(false)}
-                className="text-red-600 mb-4 font-semibold flex"
-              >
-                <X /> Close
-              </button>
+              <div className="flex items-center justify-between pl-1 pb-6 mb-2 border-b border-gray-200">
+                <h3 className="text-xl font-bold text-gray-900 tracking-tight">
+                  Filters
+                </h3>
+                <button
+                  onClick={() => setMobileFilterOpen(false)}
+                  className="p-2 bg-white rounded-full text-gray-500 hover:text-red-500 hover:bg-red-50 transition-colors shadow-sm border border-gray-100"
+                >
+                  <X size={20} strokeWidth={2.5} />
+                </button>
+              </div>
 
               {/* Filters go here (reuse same filters) */}
-              <div>
-                <p className="text-lg font-semibold mb-2">Categories</p>
-                {["Men", "Women", "Kids"].map((cat) => (
-                  <label key={cat} className="flex gap-2 mb-2 text-sm">
-                    <input
-                      type="checkbox"
-                      value={cat}
-                      checked={category.includes(cat)}
-                      onChange={toggleCategory}
-                    />
-                    {cat}
-                  </label>
-                ))}
-
-                <p className="text-lg font-semibold mt-4 mb-2">Type</p>
-                {["Topwear", "Bottomwear", "Winterwear"].map((type) => (
-                  <label key={type} className="flex gap-2 mb-2 text-sm">
-                    <input
-                      type="checkbox"
-                      value={type}
-                      checked={subCategory.includes(type)}
-                      onChange={toggleSubCategory}
-                    />
-                    {type}
-                  </label>
-                ))}
-
-                {/* Action Buttons */}
-                <div className="mt-6 flex gap-4">
-                  <button
-                    onClick={() => {
-                      applyFilter();
-                      setMobileFilterOpen(false);
-                    }}
-                    className="flex-1 bg-black text-white py-2 "
-                  >
-                    Apply
-                  </button>
-                  <button
-                    onClick={resetFilters}
-                    className="flex-1 border border-gray-400 py-2 text-red-500"
-                  >
-                    Clear All
-                  </button>
+              <div className="flex-1 overflow-y-auto py-2">
+                <div className="bg-white p-5 border border-gray-100 shadow-sm mb-6 mt-4">
+                  <p className="mb-4 text-xs font-extrabold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-3">
+                    Categories
+                  </p>
+                  <div className="flex flex-col gap-3.5 text-sm font-semibold text-gray-700">
+                    {["Men", "Women", "Kids"].map((cat) => (
+                      <label
+                        key={cat}
+                        className="flex items-center gap-3 cursor-pointer group select-none"
+                      >
+                        <div className="relative flex items-center justify-center w-5 h-5">
+                          <input
+                            className="peer w-5 h-5 appearance-none border-2 border-gray-300 rounded bg-white checked:bg-primary checked:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all cursor-pointer"
+                            type="checkbox"
+                            value={cat}
+                            checked={category.includes(cat)}
+                            onChange={toggleCategory}
+                          />
+                          <svg
+                            className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity duration-200"
+                            viewBox="0 0 14 10"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M1 5L5 9L13 1"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
+                        <span
+                          className={`transition-colors duration-200 ${category.includes(cat) ? "text-primary font-bold" : ""}`}
+                        >
+                          {cat}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
+
+                <div className="bg-white p-5 border border-gray-100 shadow-sm mb-6">
+                  <p className="mb-4 text-xs font-extrabold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-3">
+                    Type
+                  </p>
+                  <div className="flex flex-col gap-3.5 text-sm font-semibold text-gray-700">
+                    {["Topwear", "Bottomwear", "Winterwear"].map((type) => (
+                      <label
+                        key={type}
+                        className="flex items-center gap-3 cursor-pointer group select-none"
+                      >
+                        <div className="relative flex items-center justify-center w-5 h-5">
+                          <input
+                            className="peer w-5 h-5 appearance-none border-2 border-gray-300 rounded bg-white checked:bg-primary checked:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all cursor-pointer"
+                            type="checkbox"
+                            value={type}
+                            checked={subCategory.includes(type)}
+                            onChange={toggleSubCategory}
+                          />
+                          <svg
+                            className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity duration-200"
+                            viewBox="0 0 14 10"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M1 5L5 9L13 1"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
+                        <span
+                          className={`transition-colors duration-200 ${subCategory.includes(type) ? "text-primary font-bold" : ""}`}
+                        >
+                          {type}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="mt-4 flex gap-3 pt-4 border-t border-gray-200 bg-gray-50">
+                <button
+                  onClick={resetFilters}
+                  className="w-1/3 py-3.5 rounded-2xl text-sm font-bold border-2 border-gray-200 text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+                >
+                  Clear All
+                </button>
+                <button
+                  onClick={() => {
+                    applyFilter();
+                    setMobileFilterOpen(false);
+                  }}
+                  className="w-2/3 bg-gray-900 text-white rounded-2xl text-sm font-bold shadow-md hover:bg-primary transition-colors hover:-translate-y-0.5"
+                >
+                  Apply Filters
+                </button>
               </div>
             </div>
           </div>
         )}
 
         {/* Filter option */}
-        <div className="hidden sm:block min-w-60">
-          <div className="hidden sm:flex justify-between items-center ">
-            <p className="my-2 text-xl flex items-center gap-2">FILTERS</p>
+        <div className="hidden sm:block min-w-64 max-w-xs">
+          <div className="hidden sm:flex justify-between items-center mb-6">
+            <h3 className="text-xl font-bold flex items-center gap-2 text-gray-900 tracking-tight">
+              FILTERS
+            </h3>
 
             {/* Reset Button */}
-            <button
-              onClick={resetFilters}
-              className={` text-red-600 py-2 px-4 hover:underline sm:block cursor-pointer`}
-            >
-              CLEAR ALL
-            </button>
+            {(category.length > 0 || subCategory.length > 0) && (
+              <button
+                onClick={resetFilters}
+                className="text-xs font-bold text-red-500 bg-red-50 px-3 py-1.5 rounded-full hover:bg-red-100 hover:text-red-600 transition-colors uppercase tracking-widest cursor-pointer"
+              >
+                Clear All
+              </button>
+            )}
           </div>
           {/* Category Filter */}
-          <div className={`border border-gray-300 pl-5 py-3 mt-6 sm:block`}>
-            <p className="mb-3 text-sm font-medium">CATEGORIES</p>
-            <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
-              <p className="flex gap-2">
-                <input
-                  className="w-3"
-                  type="checkbox"
-                  value={"Men"}
-                  checked={category.includes("Men")}
-                  onChange={toggleCategory}
-                />{" "}
-                Men
-              </p>
-              <p className="flex gap-2">
-                <input
-                  className="w-3"
-                  type="checkbox"
-                  value={"Women"}
-                  checked={category.includes("Women")}
-                  onChange={toggleCategory}
-                />{" "}
-                Women
-              </p>
-              <p className="flex gap-2">
-                <input
-                  className="w-3"
-                  type="checkbox"
-                  value={"Kids"}
-                  checked={category.includes("Kids")}
-                  onChange={toggleCategory}
-                />{" "}
-                Kids
-              </p>
+          <div className="border border-gray-100 bg-white shadow-sm p-6 mb-6">
+            <p className="mb-4 text-xs font-extrabold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-3">
+              CATEGORIES
+            </p>
+            <div className="flex flex-col gap-3.5 text-sm font-semibold text-gray-700">
+              {["Men", "Women", "Kids"].map((cat) => (
+                <label
+                  key={cat}
+                  className="flex items-center gap-3 cursor-pointer group select-none"
+                >
+                  <div className="relative flex items-center justify-center w-5 h-5">
+                    <input
+                      className="peer w-5 h-5 appearance-none border-2 border-gray-300 rounded bg-white checked:bg-primary checked:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all cursor-pointer"
+                      type="checkbox"
+                      value={cat}
+                      checked={category.includes(cat)}
+                      onChange={toggleCategory}
+                    />
+                    <svg
+                      className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity duration-200"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1 5L5 9L13 1"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    className={`transition-colors duration-200 ${category.includes(cat) ? "text-primary font-bold" : "group-hover:text-primary"}`}
+                  >
+                    {cat}
+                  </span>
+                </label>
+              ))}
             </div>
           </div>
           {/* SubCategory Filter */}
-          <div
-            className={`border border-gray-300 pl-5 py-3 my-5 mt-6 sm:block`}
-          >
-            <p className="mb-3 text-sm font-medium">Type</p>
-            <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
-              <p className="flex gap-2">
-                <input
-                  className="w-3"
-                  type="checkbox"
-                  value={"Topwear"}
-                  checked={subCategory.includes("Topwear")}
-                  onChange={toggleSubCategory}
-                />{" "}
-                Topwear
-              </p>
-              <p className="flex gap-2">
-                <input
-                  className="w-3"
-                  type="checkbox"
-                  value={"Bottomwear"}
-                  checked={subCategory.includes("Bottomwear")}
-                  onChange={toggleSubCategory}
-                />{" "}
-                Bottomwear
-              </p>
-              <p className="flex gap-2">
-                <input
-                  className="w-3"
-                  type="checkbox"
-                  value={"Winterwear"}
-                  checked={subCategory.includes("Winterwear")}
-                  onChange={toggleSubCategory}
-                />{" "}
-                Winterwear
-              </p>
+          <div className="border border-gray-100 bg-white shadow-sm p-6 mb-6">
+            <p className="mb-4 text-xs font-extrabold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-3">
+              TYPE
+            </p>
+            <div className="flex flex-col gap-3.5 text-sm font-semibold text-gray-700">
+              {["Topwear", "Bottomwear", "Winterwear"].map((type) => (
+                <label
+                  key={type}
+                  className="flex items-center gap-3 cursor-pointer group select-none"
+                >
+                  <div className="relative flex items-center justify-center w-5 h-5">
+                    <input
+                      className="peer w-5 h-5 appearance-none border-2 border-gray-300 rounded bg-white checked:bg-primary checked:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all cursor-pointer"
+                      type="checkbox"
+                      value={type}
+                      checked={subCategory.includes(type)}
+                      onChange={toggleSubCategory}
+                    />
+                    <svg
+                      className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity duration-200"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1 5L5 9L13 1"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    className={`transition-colors duration-200 ${subCategory.includes(type) ? "text-primary font-bold" : "group-hover:text-primary"}`}
+                  >
+                    {type}
+                  </span>
+                </label>
+              ))}
             </div>
           </div>
         </div>
