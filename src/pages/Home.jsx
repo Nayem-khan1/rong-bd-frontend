@@ -25,7 +25,7 @@ const Home = () => {
               <OfferCard />
             </div>
           </div>
-          <div className="bg-pink-100 px-10 py-6 mt-6">
+          <div className="bg-pink-100 px-4 sm:px-10 py-6 mt-6">
             <Banner />
           </div>
         </div>
